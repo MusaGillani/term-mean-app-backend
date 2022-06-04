@@ -1,5 +1,6 @@
 require("dotenv").config() // load .env variables
 const mongoose = require("mongoose");
+const {log} = require('mercedlogger');
 
 // DESTRUCTURING ENV VARIABLES
 const {DATABASE_URL} = process.env;
@@ -9,9 +10,9 @@ mongoose.connect = mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUn
 
 // CONNECTION EVENTS
 mongoose.connection
-    .on("open", () => console.log("DATABASE STATE", "Connection Open"))
-    .on("close", () => console.log("DATABASE STATE", "Connection Open"))
-    .on("error", (error) => console.log("DATABASE STATE", error));
+    .on("open", () => log.green("DATABASE STATE", "Connection Open"))
+    .on("close", () => log.magenta("DATABASE STATE", "Connection Closed"))
+    .on("error", (error) => log.red("DATABASE STATE", error));
 
 // EXPORT CONNECTION
 module.exports = mongoose;
