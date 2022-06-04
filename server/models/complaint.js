@@ -25,7 +25,6 @@ const complaintSchema = new mongoose.Schema({
     },
     assignee: {
         type: person,
-        required: true,
     }
 })
 
