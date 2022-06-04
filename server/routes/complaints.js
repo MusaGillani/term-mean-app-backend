@@ -10,7 +10,25 @@ router.post('/addComplaint', async (req, res, next) => {
 
     complaint.save();
 
-    res.send(_.pick(complaint,['status']));
+    res.send(_.pick(complaint, ['status']));
 });
+
+router.get('/deptComplaints', async (req, res, next) => {
+    let dept = req.query.dept;
+
+    complaints = await Complaint.find({  dept: dept  });
+
+    res.send({ complaints });
+});
+
+
+router.get('/userComplaints', async (req,res,next)=> {
+    let email = req.query.email;
+
+    complaints = await Complaint.find({userEmail: email});
+
+    res.send({complaints});
+})
+
 
 module.exports = router;
