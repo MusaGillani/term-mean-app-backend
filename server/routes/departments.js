@@ -15,4 +15,12 @@ router.post('/addDep', authenticateToken, async (req, res, next) => {
 
 });
 
+router.get('/getDeps',authenticateToken, async (req,res,next) => {
+    let depts = await Department.find().select('departmentName');
+
+    // console.log(depts);
+
+    res.send(JSON.stringify(depts));
+});
+
 module.exports = router;
