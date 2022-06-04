@@ -1,19 +1,6 @@
 const mongoose = require('../db/connection');
+const person = require('../models/person');
 
-const headSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-    },
-    contact: {
-        type: Number,
-        required: true
-    }
-})
 
 const departmentSchema = new mongoose.Schema({
     departmentName: {
@@ -21,7 +8,7 @@ const departmentSchema = new mongoose.Schema({
         required: true
     },
     departmentHead: {
-        type: headSchema,
+        type: person,
         required: true
     },
     complaintsClosed: { type: Number, default: 0, },
@@ -30,7 +17,4 @@ const departmentSchema = new mongoose.Schema({
 
 const Department = mongoose.model('Department', departmentSchema);
 
-function validate(department) {
-
-}
 exports.Department = Department;
