@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const morgan = require('morgan');
 
 // Set up the express app
 const app = express();
@@ -7,7 +8,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(morgan('tiny'));
 
 // CORS Headers Middleware
 app.use((req, res, next) => {
