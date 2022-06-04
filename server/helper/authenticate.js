@@ -8,8 +8,11 @@ function authenticateToken(req,res,next){
 
     const {SECRET}  = process.env;
     jwt.verify(token, SECRET , (err,user) => {
-        if(err) return res.sendStatus(403)
+        if(err) return res.sendStatus(403);
+        console.log("authorized")
         req.user = user;
         next();
     })
 }
+
+module.exports = authenticateToken;
