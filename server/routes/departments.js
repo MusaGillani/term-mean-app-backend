@@ -6,7 +6,7 @@ const router = require("express").Router();
 
 router.post('/addDep', authenticateToken, async (req, res, next) => {
     let data = req.body;
-    console.log(data);
+
     dep = new Department({ departmentName: data.departmentName, departmentHead: data.departmentHead });
 
     await dep.save();
